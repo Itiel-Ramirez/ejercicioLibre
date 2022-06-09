@@ -71,7 +71,6 @@ function romano (input){
     return output
 }
 
-//Estos son los valores del ejemplo 
 function main(inputs){
     for (input_index in inputs){
         input = inputs[input_index]
@@ -80,6 +79,8 @@ function main(inputs){
         send_answer(input,output)
     }
 }
+
+//Estos son los valores del ejemplo del PDF
 inputs = [
     "iii",
     "iv",
@@ -90,10 +91,7 @@ inputs = [
 
 main(inputs)
 
-
-
 //Estos son distitos valores
-
 inputs = [
     "dcclxxvii",
     "cmxlix",
