@@ -15,7 +15,7 @@ async function postData(url = '', data = {}) {
 }
 
 function send_answer(input, output, name="Saul Itiel"){
-    response = postData('https://62a130627b9345bcbe479cbe.mockapi.io/romanos',
+    response = postData('https://enigmatic-basin-99270.herokuapp.com/answer/',
     {
         "input": input,
         "output": output,
@@ -36,12 +36,13 @@ const romanos = {
 }
 
 const valid_res = {
+    "i": [],
     "v": ["i"],
     "x": ["i"],
     "l": ["x"],
     "c": ["x"],
     "d": ["c"],
-    "c": ["c"]
+    "m": ["c"]
 }
 
 function romano (input){
@@ -51,7 +52,12 @@ function romano (input){
         if (parseInt(index)+1 <input.length){
             next_value = romanos[input[parseInt(index)+1]]
             if (current_value < next_value ){
-                /* valid_res[input[index]].includes() */
+                if(valid_res[input[parseInt(index)+1]].includes(input[index])){
+                }
+                else{
+                    console.log("El numero ingresado no es valido")
+                    //Aqui deberia de mandar una exepcion para detener el programa si el valor no es valido
+                }
                 output-=  current_value
             }
             else{
@@ -66,39 +72,34 @@ function romano (input){
 }
 
 //Estos son los valores del ejemplo 
+function main(inputs){
+    for (input_index in inputs){
+        input = inputs[input_index]
+        var output = romano(input)
+        console.log('El numero es', output)
+        send_answer(input,output)
+    }
+}
+inputs = [
+    "iii",
+    "iv",
+    "ix",
+    "lviii",
+    "mcmxcvii"
+]
 
-var input = "iii";
-console.log('El numero es', romano(input))
+main(inputs)
 
-var input = "iv";
-console.log('El numero es', romano(input))
 
-var input = "ix";
-console.log('El numero es', romano(input))
-
-var input = "lviii";
-console.log('El numero es', romano(input))
-
-var input = "mcmxciv";
-console.log('El numero es', romano(input))
 
 //Estos son distitos valores
 
-var input = "dcclxxvii";
-console.log('El numero es', romano(input))
+inputs = [
+    "dcclxxvii",
+    "cmxlix",
+    "mdlxxxvii",
+    "mmmcccxxxviii",
+    "mmmcmxcix"
+]
 
-var input = "cmxlix";
-console.log('El numero es', romano(input))
-
-var input = "mdlxxxvii";
-console.log('El numero es', romano(input))
-
-var input = "mmmcccxxxviii";
-console.log('El numero es', romano(input))
-
-var input = "mmmcmxcix";
-console.log('El numero es', romano(input))
-
-var output = romano(input)
-
-send_answer(input,output)
+main(inputs)
